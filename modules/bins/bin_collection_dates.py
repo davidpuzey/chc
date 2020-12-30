@@ -2,6 +2,10 @@
 # Get list of bin collection dates from Portsmouth Council website
 # TODO This is a big on the hacky side, not really robust at all, we should probably check that requests have completed properly rather than just assuming and just generally do everything better
 #      FYI The reply from runLookup has a 'status' field that should be set to 'done', maybe use this??? or it might be nothing, also check for HTTP code 200 maybe????
+# Notes:
+#   - I noticed a CSRF floating around the website, if things go wrong we might need to use this as well
+#   - There are AWS cookies too .. I'm not sure how much is hosted in AWS and if AWS will get upset if they aren't about so might need to look at those too
+#   - Most GETs and POSTs have an aweful lot more arguments sent and received, cookies too, so might need to include some. '_' seems to be a timestamp and 'sid' is sent to a lot too (session id, extracted when doing auth below)
 
 import sys
 from http.client import HTTPSConnection
